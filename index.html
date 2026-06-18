@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Electrical Calculator Web App</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header>
+      <h1>Electrical Calculator Web App</h1>
+      <p>Choose a calculator and see step-by-step formulas for Transformer ratio, Watt, and Ohm's Law.</p>
+    </header>
+
+    <nav class="menu">
+      <button id="btn-transformer" class="menu-button active">Transformer Ratio</button>
+      <button id="btn-watt" class="menu-button">Watt Calculator</button>
+      <button id="btn-ohm" class="menu-button">Ohm's Law</button>
+    </nav>
+
+    <main>
+      <section id="transformer-section" class="calculator-section active">
+        <h2>Transformer Ratio</h2>
+        <p>Leave exactly one field blank to calculate the missing value.</p>
+        <div class="grid">
+          <label>Primary voltage Vp (V)<input id="vp" type="number" step="any" placeholder="e.g. 230" /></label>
+          <label>Secondary voltage Vs (V)<input id="vs" type="number" step="any" placeholder="e.g. 12" /></label>
+          <label>Primary turns Np<input id="np" type="number" step="any" placeholder="e.g. 460" /></label>
+          <label>Secondary turns Ns<input id="ns" type="number" step="any" placeholder="e.g. 24" /></label>
+        </div>
+        <button id="calc-transformer" class="action-button">Calculate Transformer</button>
+      </section>
+
+      <section id="watt-section" class="calculator-section">
+        <h2>Watt Calculator</h2>
+        <p>Leave exactly one field blank to calculate the missing value.</p>
+        <div class="grid">
+          <label>Power P (W)<input id="pw" type="number" step="any" placeholder="e.g. 100" /></label>
+          <label>Voltage V (V)<input id="vw" type="number" step="any" placeholder="e.g. 12" /></label>
+          <label>Current I (A)<input id="iw" type="number" step="any" placeholder="e.g. 8.33" /></label>
+        </div>
+        <button id="calc-watt" class="action-button">Calculate Watt</button>
+      </section>
+
+      <section id="ohm-section" class="calculator-section">
+        <h2>Ohm's Law</h2>
+        <p>Leave exactly one field blank to calculate the missing value.</p>
+        <div class="grid">
+          <label>Voltage V (V)<input id="vo" type="number" step="any" placeholder="e.g. 12" /></label>
+          <label>Current I (A)<input id="io" type="number" step="any" placeholder="e.g. 2" /></label>
+          <label>Resistance R (Ω)<input id="ro" type="number" step="any" placeholder="e.g. 6" /></label>
+        </div>
+        <button id="calc-ohm" class="action-button">Calculate Ohm</button>
+      </section>
+
+      <section class="output-section">
+        <h2>Result</h2>
+        <div id="result-summary" class="result-summary">Select a calculator and enter values.</div>
+        <div id="result-steps" class="result-steps"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
