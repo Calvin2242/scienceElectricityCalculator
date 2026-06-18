@@ -53,7 +53,7 @@ function calculateTransformer() {
   const emptyCount = values.filter((value) => value === null).length;
 
   if (emptyCount !== 1) {
-    showResult('Error: Leave exactly one field blank.', ['For transformer calculation, one value must be missing.']);
+    showResult('Error: Leave exactly one field blank.', ['For transformer calculation, ONLY one value must be missing.']);
     return;
   }
 
@@ -111,7 +111,7 @@ function calculateWatt() {
   const emptyCount = values.filter((value) => value === null).length;
 
   if (emptyCount !== 1) {
-    showResult('Error: Leave exactly one field blank.', ['For watt calculation, one value must be missing.']);
+    showResult('Error: Leave exactly one field blank.', ['For watt calculation, ONLY one value must be missing.']);
     return;
   }
 
@@ -156,7 +156,7 @@ function calculateOhm() {
   const emptyCount = values.filter((value) => value === null).length;
 
   if (emptyCount !== 1) {
-    showResult('Error: Leave exactly one field blank.', ['For Ohm\'s Law calculation, one value must be missing.']);
+    showResult('Error: Leave exactly one field blank.', ['For Ohm\'s Law calculation, ONLY one value must be missing.']);
     return;
   }
 
