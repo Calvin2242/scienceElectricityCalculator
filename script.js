@@ -34,14 +34,15 @@ function createStepParagraph(text) {
 }
 
 function showResult(summary, steps) {
-  resultSummary.textContent = summary;
+  resultSummary.innerHTML = summary;
   resultSteps.innerHTML = '';
-  steps.forEach((step) => {
+  steps.forEach((step, index) => {
     const paragraph = document.createElement('p');
     paragraph.className = 'step-line';
-    paragraph.innerHTML = step;
+    paragraph.innerHTML = `<span class="step-number">${index + 1}</span> ${step}`;
     resultSteps.appendChild(paragraph);
   });
+  renderMathInElement(document.getElementById('result-summary'), { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}] });
   renderMathInElement(resultSteps, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}] });
 }
 

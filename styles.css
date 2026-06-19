@@ -164,6 +164,20 @@ input:focus {
   font-size: 1.05rem;
 }
 
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: #6b8cff;
+  color: #ffffff;
+  border-radius: 50%;
+  font-weight: 700;
+  margin-right: 10px;
+  font-size: 0.95rem;
+}
+
 .result-steps .katex {
   font-size: 1.1em;
 }
