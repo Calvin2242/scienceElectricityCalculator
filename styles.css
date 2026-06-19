@@ -15,7 +15,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: clamp(16px, 4vw, 24px);
 }
 
 .app-shell {
@@ -23,25 +23,39 @@ body {
   background: #ffffff;
   border-radius: 24px;
   box-shadow: 0 24px 80px rgba(34, 53, 104, 0.12);
-  padding: 32px;
+  padding: clamp(20px, 5vw, 32px);
+  animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 header h1 {
   margin: 0 0 8px;
-  font-size: clamp(2rem, 2.5vw, 2.8rem);
+  font-size: clamp(1.5rem, 2.5vw, 2.8rem);
 }
 
 header p {
   margin: 0;
   color: #5e6a86;
   line-height: 1.6;
+  font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
 .menu {
   display: flex;
-  gap: 12px;
+  gap: clamp(8px, 2vw, 12px);
   margin: 28px 0;
   flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .menu-button {
@@ -49,16 +63,33 @@ header p {
   color: #223459;
   background: #f8faff;
   border-radius: 14px;
-  padding: 12px 18px;
+  padding: clamp(10px, 2vw, 12px) clamp(14px, 3vw, 18px);
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  transition: all 0.3s ease;
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  touch-action: manipulation;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.menu-button.active,
 .menu-button:hover {
   background: #eef4ff;
   border-color: #a5c1ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(107, 140, 255, 0.15);
+}
+
+.menu-button:active {
+  transform: translateY(0);
+}
+
+.menu-button.active {
+  background: #eef4ff;
+  border-color: #a5c1ff;
+  box-shadow: 0 4px 12px rgba(107, 140, 255, 0.2);
 }
 
 main {
@@ -68,10 +99,20 @@ main {
 
 .calculator-section {
   display: none;
-  padding: 22px 24px;
+  padding: clamp(18px, 4vw, 22px) clamp(18px, 4vw, 24px);
   background: #f7f9ff;
   border-radius: 18px;
   border: 1px solid #edf0f7;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .calculator-section.active {
@@ -80,20 +121,19 @@ main {
 
 .calculator-section h2 {
   margin: 0 0 10px;
+  font-size: clamp(1.3rem, 2vw, 1.5rem);
 }
 
-.grid {
-  display: grid;
-  gap: 14px;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+.calculator-section p {
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
 }
 
 .formula-display {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 24px;
-  padding: 32px 24px;
+  gap: clamp(12px, 3vw, 24px);
+  padding: clamp(20px, 4vw, 32px);
   background: #f7f9ff;
   border-radius: 18px;
   border: 1px solid #edf0f7;
@@ -102,7 +142,7 @@ main {
 }
 
 .formula-display.equation {
-  gap: 16px;
+  gap: clamp(10px, 2vw, 16px);
 }
 
 .fraction {
@@ -113,14 +153,15 @@ main {
 }
 
 .fraction input {
-  width: 80px;
-  height: 40px;
+  width: clamp(60px, 15vw, 90px);
+  min-height: 44px;
   text-align: center;
-  font-size: 1.1rem;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
   font-weight: 600;
   border: 2px solid #d8dbe6;
   border-radius: 8px;
-  padding: 8px;
+  padding: clamp(6px, 1vw, 8px);
+  transition: all 0.2s ease;
 }
 
 .fraction input:focus {
@@ -130,35 +171,36 @@ main {
 }
 
 .fraction-line {
-  width: 80px;
+  width: clamp(60px, 15vw, 90px);
   height: 2px;
   background: #223459;
   margin: 4px 0;
 }
 
 .equals {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 700;
   color: #223459;
-  min-width: 40px;
+  min-width: 30px;
   text-align: center;
 }
 
 .operator {
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 2vw, 1.3rem);
   font-weight: 600;
   color: #223459;
 }
 
 .compact-input {
-  width: 70px;
-  height: 40px;
+  width: clamp(55px, 12vw, 80px);
+  min-height: 44px;
   text-align: center;
-  font-size: 1.1rem;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
   font-weight: 600;
   border: 2px solid #d8dbe6;
   border-radius: 8px;
-  padding: 8px;
+  padding: clamp(6px, 1vw, 8px);
+  transition: all 0.2s ease;
 }
 
 .compact-input:focus {
@@ -167,21 +209,14 @@ main {
   box-shadow: 0 0 0 3px rgba(107, 140, 255, 0.14);
 }
 
-label {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-weight: 600;
-  color: #2a3655;
-}
-
 input {
   border: 1px solid #d8dbe6;
   border-radius: 12px;
   padding: 12px 14px;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
   color: #1c1f2a;
   background: #ffffff;
+  transition: all 0.2s ease;
 }
 
 input:focus {
@@ -190,25 +225,64 @@ input:focus {
   box-shadow: 0 0 0 3px rgba(107, 140, 255, 0.14);
 }
 
-.action-button {
+.button-group {
+  display: flex;
+  gap: clamp(10px, 2vw, 14px);
   margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.action-button {
   border: none;
   color: #ffffff;
   background: #3f67ff;
   border-radius: 14px;
-  padding: 15px 22px;
-  font-size: 1rem;
+  padding: clamp(12px, 2vw, 15px) clamp(18px, 3vw, 22px);
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
   font-weight: 700;
   cursor: pointer;
-  width: fit-content;
+  min-height: 44px;
+  transition: all 0.3s ease;
+  touch-action: manipulation;
 }
 
 .action-button:hover {
   background: #2f52e5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(63, 103, 255, 0.2);
+}
+
+.action-button:active {
+  transform: translateY(0);
+}
+
+.clear-button {
+  border: 2px solid #d5dbe8;
+  color: #5e6a86;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: clamp(12px, 2vw, 15px) clamp(18px, 3vw, 22px);
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  transition: all 0.3s ease;
+  touch-action: manipulation;
+}
+
+.clear-button:hover {
+  background: #f5f7fb;
+  border-color: #a5b0c1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(34, 53, 104, 0.1);
+}
+
+.clear-button:active {
+  transform: translateY(0);
 }
 
 .output-section {
-  padding: 24px;
+  padding: clamp(18px, 4vw, 24px);
   background: #eef4ff;
   border-radius: 18px;
   border: 1px solid #dce4f7;
@@ -216,16 +290,29 @@ input:focus {
 
 .output-section h2 {
   margin: 0 0 16px;
+  font-size: clamp(1.3rem, 2vw, 1.5rem);
 }
 
 .result-summary {
-  font-size: 1rem;
-  padding: 18px;
+  font-size: clamp(0.95rem, 1.5vw, 1rem);
+  padding: clamp(14px, 2vw, 18px);
   border-radius: 14px;
   background: #ffffff;
   border: 1px solid #d5dbe8;
   min-height: 68px;
   line-height: 1.7;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .result-steps {
@@ -236,17 +323,19 @@ input:focus {
 
 .result-steps p {
   margin: 14px 0;
-  padding: 12px 16px;
+  padding: clamp(10px, 2vw, 12px) clamp(12px, 2vw, 16px);
   background: #f8faff;
   border-radius: 12px;
   border-left: 4px solid #6b8cff;
-  font-size: 1.05rem;
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  animation: slideDown 0.3s ease-out;
 }
 
 .step-number {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-width: 28px;
   width: 28px;
   height: 28px;
   background: #6b8cff;
@@ -254,7 +343,7 @@ input:focus {
   border-radius: 50%;
   font-weight: 700;
   margin-right: 10px;
-  font-size: 0.95rem;
+  font-size: clamp(0.8rem, 1vw, 0.95rem);
 }
 
 .result-steps .katex {
@@ -268,4 +357,37 @@ input:focus {
 .result-steps strong {
   color: #223459;
   font-weight: 700;
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 640px) {
+  body {
+    padding: 12px;
+  }
+
+  .app-shell {
+    border-radius: 16px;
+  }
+
+  .menu-button {
+    flex: 1;
+    min-width: 80px;
+  }
+
+  .button-group {
+    width: 100%;
+  }
+
+  .action-button,
+  .clear-button {
+    flex: 1;
+  }
+
+  .formula-display {
+    padding: 16px 12px;
+  }
+
+  .calculator-section {
+    padding: 14px 16px;
+  }
 }

@@ -4,6 +4,12 @@ const sections = {
   ohm: document.getElementById('ohm-section'),
 };
 
+const inputGroups = {
+  transformer: ['vp', 'vs', 'np', 'ns'],
+  watt: ['pw', 'vw', 'iw'],
+  ohm: ['vo', 'io', 'ro'],
+};
+
 const resultSummary = document.getElementById('result-summary');
 const resultSteps = document.getElementById('result-steps');
 
@@ -17,6 +23,7 @@ function setActiveSection(key) {
   Object.keys(sections).forEach((sectionKey) => {
     sections[sectionKey].classList.toggle('active', sectionKey === key);
     stateButtons[sectionKey].classList.toggle('active', sectionKey === key);
+    stateButtons[sectionKey].setAttribute('aria-pressed', sectionKey === key);
   });
   resultSummary.textContent = 'Enter values and click Calculate to see the result and steps.';
   resultSteps.innerHTML = '';
@@ -48,6 +55,26 @@ function showResult(summary, steps) {
   });
   renderMathInElement(document.getElementById('result-summary'), { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}] });
   renderMathInElement(resultSteps, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}] });
+}
+
+function clearInputs(sectionKey) {
+  const inputs = inputGroups[sectionKey];
+  inputs.forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  resultSummary.textContent = 'Enter values and click Calculate to see the result and steps.';
+  resultSteps.innerHTML = '';
+}
+
+function addEnterKeyListeners(sectionKey, calculateFn) {
+  const inputs = inputGroups[sectionKey];
+  inputs.forEach(id => {
+    document.getElementById(id).addEventListener('keypress', (event) => {
+      if (event.key === 'Enter') {
+        calculateFn();
+      }
+    });
+  });
 }
 
 function calculateTransformer() {
@@ -216,3 +243,11 @@ document.getElementById('btn-ohm').addEventListener('click', () => setActiveSect
 document.getElementById('calc-transformer').addEventListener('click', calculateTransformer);
 document.getElementById('calc-watt').addEventListener('click', calculateWatt);
 document.getElementById('calc-ohm').addEventListener('click', calculateOhm);
+document.getElementById('clear-transformer').addEventListener('click', () => clearInputs('transformer'));
+document.getElementById('clear-watt').addEventListener('click', () => clearInputs('watt'));
+document.getElementById('clear-ohm').addEventListener('click', () => clearInputs('ohm'));
+
+// Add Enter key support for calculations
+addEnterKeyListeners('transformer', calculateTransformer);
+addEnterKeyListeners('watt', calculateWatt);
+addEnterKeyListeners('ohm', calculateOhm);
