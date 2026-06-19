@@ -27,6 +27,10 @@ function parseValue(id) {
   return value === '' ? null : Number(value);
 }
 
+function formatResult(num) {
+  return parseFloat(num.toPrecision(4)).toString();
+}
+
 function createStepParagraph(text) {
   const p = document.createElement('p');
   p.textContent = text;
@@ -62,48 +66,52 @@ function calculateTransformer() {
 
   if (vp === null) {
     const result = (vs * np) / ns;
+    const formattedResult = formatResult(result);
     const steps = [
       '<strong>Transformer equation:</strong> $\\frac{V_p}{V_s} = \\frac{N_p}{N_s}$',
       '<strong>Rearranged for</strong> $V_p$: $V_p = \\frac{V_s \\times N_p}{N_s}$',
       `<strong>Substitute values:</strong> $V_p = \\frac{${vs} \\times ${np}}{${ns}}$`,
-      `<strong>Result:</strong> $V_p = ${result.toFixed(6)} \\text{ V}$`,
+      `<strong>Result:</strong> $V_p = ${formattedResult} \\text{ V}$`,
     ];
-    showResult(`Primary voltage $V_p = ${result.toFixed(6)}$ V`, steps);
+    showResult(`Primary voltage $V_p = ${formattedResult}$ V`, steps);
     return;
   }
 
   if (vs === null) {
     const result = (vp * ns) / np;
+    const formattedResult = formatResult(result);
     const steps = [
       '<strong>Transformer equation:</strong> $\\frac{V_p}{V_s} = \\frac{N_p}{N_s}$',
       '<strong>Rearranged for</strong> $V_s$: $V_s = \\frac{V_p \\times N_s}{N_p}$',
       `<strong>Substitute values:</strong> $V_s = \\frac{${vp} \\times ${ns}}{${np}}$`,
-      `<strong>Result:</strong> $V_s = ${result.toFixed(6)} \\text{ V}$`,
+      `<strong>Result:</strong> $V_s = ${formattedResult} \\text{ V}$`,
     ];
-    showResult(`Secondary voltage $V_s = ${result.toFixed(6)}$ V`, steps);
+    showResult(`Secondary voltage $V_s = ${formattedResult}$ V`, steps);
     return;
   }
 
   if (np === null) {
     const result = (ns * vp) / vs;
+    const formattedResult = formatResult(result);
     const steps = [
       '<strong>Transformer equation:</strong> $\\frac{V_p}{V_s} = \\frac{N_p}{N_s}$',
       '<strong>Rearranged for</strong> $N_p$: $N_p = \\frac{N_s \\times V_p}{V_s}$',
       `<strong>Substitute values:</strong> $N_p = \\frac{${ns} \\times ${vp}}{${vs}}$`,
-      `<strong>Result:</strong> $N_p = ${result.toFixed(6)} \\text{ turns}$`,
+      `<strong>Result:</strong> $N_p = ${formattedResult} \\text{ turns}$`,
     ];
-    showResult(`Primary turns $N_p = ${result.toFixed(6)}$`, steps);
+    showResult(`Primary turns $N_p = ${formattedResult}$`, steps);
     return;
   }
 
   const result = (np * vs) / vp;
+  const formattedResult = formatResult(result);
   const steps = [
     '<strong>Transformer equation:</strong> $\\frac{V_p}{V_s} = \\frac{N_p}{N_s}$',
     '<strong>Rearranged for</strong> $N_s$: $N_s = \\frac{N_p \\times V_s}{V_p}$',
     `<strong>Substitute values:</strong> $N_s = \\frac{${np} \\times ${vs}}{${vp}}$`,
-    `<strong>Result:</strong> $N_s = ${result.toFixed(6)} \\text{ turns}$`,
+    `<strong>Result:</strong> $N_s = ${formattedResult} \\text{ turns}$`,
   ];
-  showResult(`Secondary turns $N_s = ${result.toFixed(6)}$`, steps);
+  showResult(`Secondary turns $N_s = ${formattedResult}$`, steps);
 }
 
 function calculateWatt() {
@@ -120,35 +128,38 @@ function calculateWatt() {
 
   if (p === null) {
     const result = v * i;
+    const formattedResult = formatResult(result);
     const steps = [
       '<strong>Power equation:</strong> $P = V \\times I$',
       `<strong>Substitute values:</strong> $P = ${v} \\times ${i}$`,
-      `<strong>Result:</strong> $P = ${result.toFixed(6)} \\text{ W}$`,
+      `<strong>Result:</strong> $P = ${formattedResult} \\text{ W}$`,
     ];
-    showResult(`Power $P = ${result.toFixed(6)}$ W`, steps);
+    showResult(`Power $P = ${formattedResult}$ W`, steps);
     return;
   }
 
   if (v === null) {
     const result = p / i;
+    const formattedResult = formatResult(result);
     const steps = [
       '<strong>Power equation:</strong> $P = V \\times I$',
       '<strong>Rearranged for</strong> $V$: $V = \\frac{P}{I}$',
       `<strong>Substitute values:</strong> $V = \\frac{${p}}{${i}}$`,
-      `<strong>Result:</strong> $V = ${result.toFixed(6)} \\text{ V}$`,
+      `<strong>Result:</strong> $V = ${formattedResult} \\text{ V}$`,
     ];
-    showResult(`Voltage $V = ${result.toFixed(6)}$ V`, steps);
+    showResult(`Voltage $V = ${formattedResult}$ V`, steps);
     return;
   }
 
   const result = p / v;
+  const formattedResult = formatResult(result);
   const steps = [
     '<strong>Power equation:</strong> $P = V \\times I$',
     '<strong>Rearranged for</strong> $I$: $I = \\frac{P}{V}$',
     `<strong>Substitute values:</strong> $I = \\frac{${p}}{${v}}$`,
-    `<strong>Result:</strong> $I = ${result.toFixed(6)} \\text{ A}$`,
+    `<strong>Result:</strong> $I = ${formattedResult} \\text{ A}$`,
   ];
-  showResult(`Current $I = ${result.toFixed(6)}$ A`, steps);
+  showResult(`Current $I = ${formattedResult}$ A`, steps);
 }
 
 function calculateOhm() {
@@ -165,35 +176,38 @@ function calculateOhm() {
 
   if (v === null) {
     const result = i * r;
+    const formattedResult = formatResult(result);
     const steps = [
       '<strong>Ohm\'s Law:</strong> $V = I \\times R$',
       `<strong>Substitute values:</strong> $V = ${i} \\times ${r}$`,
-      `<strong>Result:</strong> $V = ${result.toFixed(6)} \\text{ V}$`,
+      `<strong>Result:</strong> $V = ${formattedResult} \\text{ V}$`,
     ];
-    showResult(`Voltage $V = ${result.toFixed(6)}$ V`, steps);
+    showResult(`Voltage $V = ${formattedResult}$ V`, steps);
     return;
   }
 
   if (i === null) {
     const result = v / r;
+    const formattedResult = formatResult(result);
     const steps = [
       '<strong>Ohm\'s Law:</strong> $V = I \\times R$',
       '<strong>Rearranged for</strong> $I$: $I = \\frac{V}{R}$',
       `<strong>Substitute values:</strong> $I = \\frac{${v}}{${r}}$`,
-      `<strong>Result:</strong> $I = ${result.toFixed(6)} \\text{ A}$`,
+      `<strong>Result:</strong> $I = ${formattedResult} \\text{ A}$`,
     ];
-    showResult(`Current $I = ${result.toFixed(6)}$ A`, steps);
+    showResult(`Current $I = ${formattedResult}$ A`, steps);
     return;
   }
 
   const result = v / i;
+  const formattedResult = formatResult(result);
   const steps = [
     '<strong>Ohm\'s Law:</strong> $V = I \\times R$',
     '<strong>Rearranged for</strong> $R$: $R = \\frac{V}{I}$',
     `<strong>Substitute values:</strong> $R = \\frac{${v}}{${i}}$`,
-    `<strong>Result:</strong> $R = ${result.toFixed(6)} \\text{ Ω}$`,
+    `<strong>Result:</strong> $R = ${formattedResult} \\text{ Ω}$`,
   ];
-  showResult(`Resistance $R = ${result.toFixed(6)}$ Ω`, steps);
+  showResult(`Resistance $R = ${formattedResult}$ Ω`, steps);
 }
 
 document.getElementById('btn-transformer').addEventListener('click', () => setActiveSection('transformer'));
