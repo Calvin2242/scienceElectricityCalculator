@@ -24,11 +24,18 @@
       <section id="transformer-section" class="calculator-section active">
         <h2>Transformer Ratio</h2>
         <p>Leave exactly one field blank to calculate the missing value.</p>
-        <div class="grid">
-          <label>Primary voltage Vp (V)<input id="vp" type="number" step="any" placeholder="e.g. 230" /></label>
-          <label>Secondary voltage Vs (V)<input id="vs" type="number" step="any" placeholder="e.g. 12" /></label>
-          <label>Primary turns Np<input id="np" type="number" step="any" placeholder="e.g. 460" /></label>
-          <label>Secondary turns Ns<input id="ns" type="number" step="any" placeholder="e.g. 24" /></label>
+        <div class="formula-display">
+          <div class="fraction">
+            <input id="vp" type="number" step="any" placeholder="Vp" />
+            <div class="fraction-line"></div>
+            <input id="vs" type="number" step="any" placeholder="Vs" />
+          </div>
+          <div class="equals">=</div>
+          <div class="fraction">
+            <input id="np" type="number" step="any" placeholder="Np" />
+            <div class="fraction-line"></div>
+            <input id="ns" type="number" step="any" placeholder="Ns" />
+          </div>
         </div>
         <button id="calc-transformer" class="action-button">Calculate Transformer</button>
       </section>
@@ -36,10 +43,12 @@
       <section id="watt-section" class="calculator-section">
         <h2>Watt Calculator</h2>
         <p>Leave exactly one field blank to calculate the missing value.</p>
-        <div class="grid">
-          <label>Power P (W)<input id="pw" type="number" step="any" placeholder="e.g. 100" /></label>
-          <label>Voltage V (V)<input id="vw" type="number" step="any" placeholder="e.g. 12" /></label>
-          <label>Current I (A)<input id="iw" type="number" step="any" placeholder="e.g. 8.33" /></label>
+        <div class="formula-display equation">
+          <input id="pw" type="number" step="any" placeholder="P" class="compact-input" />
+          <div class="operator">=</div>
+          <input id="vw" type="number" step="any" placeholder="V" class="compact-input" />
+          <div class="operator">×</div>
+          <input id="iw" type="number" step="any" placeholder="I" class="compact-input" />
         </div>
         <button id="calc-watt" class="action-button">Calculate Watt</button>
       </section>
@@ -47,10 +56,12 @@
       <section id="ohm-section" class="calculator-section">
         <h2>Ohm's Law</h2>
         <p>Leave exactly one field blank to calculate the missing value.</p>
-        <div class="grid">
-          <label>Voltage V (V)<input id="vo" type="number" step="any" placeholder="e.g. 12" /></label>
-          <label>Current I (A)<input id="io" type="number" step="any" placeholder="e.g. 2" /></label>
-          <label>Resistance R (Ω)<input id="ro" type="number" step="any" placeholder="e.g. 6" /></label>
+        <div class="formula-display equation">
+          <input id="vo" type="number" step="any" placeholder="V" class="compact-input" />
+          <div class="operator">=</div>
+          <input id="io" type="number" step="any" placeholder="I" class="compact-input" />
+          <div class="operator">×</div>
+          <input id="ro" type="number" step="any" placeholder="R" class="compact-input" />
         </div>
         <button id="calc-ohm" class="action-button">Calculate Ohm</button>
       </section>

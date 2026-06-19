@@ -88,6 +88,85 @@ main {
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
 }
 
+.formula-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 32px 24px;
+  background: #f7f9ff;
+  border-radius: 18px;
+  border: 1px solid #edf0f7;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.formula-display.equation {
+  gap: 16px;
+}
+
+.fraction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.fraction input {
+  width: 80px;
+  height: 40px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: 2px solid #d8dbe6;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.fraction input:focus {
+  outline: none;
+  border-color: #6b8cff;
+  box-shadow: 0 0 0 3px rgba(107, 140, 255, 0.14);
+}
+
+.fraction-line {
+  width: 80px;
+  height: 2px;
+  background: #223459;
+  margin: 4px 0;
+}
+
+.equals {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #223459;
+  min-width: 40px;
+  text-align: center;
+}
+
+.operator {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #223459;
+}
+
+.compact-input {
+  width: 70px;
+  height: 40px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: 2px solid #d8dbe6;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.compact-input:focus {
+  outline: none;
+  border-color: #6b8cff;
+  box-shadow: 0 0 0 3px rgba(107, 140, 255, 0.14);
+}
+
 label {
   display: flex;
   flex-direction: column;
